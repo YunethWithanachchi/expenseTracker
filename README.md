@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense Tracker (Next.js)
 
-## Getting Started
+## Overview
 
-First, run the development server:
+A full-stack expense tracking application(without database connection) built with Next.js (App Router).
+Users can log in, manage expenses, and view summaries with filtering and UI enhancements.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+* Login with token-based authentication
+* Add, edit, delete expenses
+* Fields: amount, description, category, date
+* Category filtering and date range filtering
+* Total expense calculation
+
+---
+
+## Tech Stack
+
+* Next.js (React, App Router)
+* Node.js (via Next.js API routes)
+* Tailwind CSS
+* React Hooks & Context API
+
+---
+
+## Project Structure
+
+```
+app/
+ ├── dashboard/page.js        # Dashboard UI
+ ├── login/page.js            # Login page
+ ├── api/expenses/route.js    # API routes (backend logic)
+ ├── lib/expenseStore.js      # In-memory data store (service layer)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running the Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open:
 
-To learn more about Next.js, take a look at the following resources:
+```
+http://localhost:3000/login
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Authentication Approach
 
-## Deploy on Vercel
+* A simple token is generated on login and stored in localStorage
+* Protected routes check for token presence and redirect if missing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Production Improvements
+
+* Use HTTP-only cookies instead of localStorage
+* Implement JWT-based authentication
+* Add middleware-based route protection
+
+---
+
+## Design Decisions
+
+* Used Next.js API routes to simulate backend functionality
+* Separated logic into UI, API, and service layer (`expenseStore`)
+* Used in-memory storage for simplicity and speed
+* Structured to allow easy database integration later
+
+---
+
+## Limitations
+
+* Data is not persistent (resets on server restart)
+* Authentication is not secure for production use
+
+---
+
+## Improvements (With More Time)
+
+* Integrate a database (MongoDB/PostgreSQL)
+* Add charts for expense visualization
+* Improve UI/UX and responsiveness
+* Dark mode preference
+* Implement server actions for cleaner data handling
